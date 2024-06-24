@@ -20,7 +20,7 @@ jobs:
       uses: akkuman/notion_to_github_blog@master
       with:
         notion_token: ${secret_K9rEXfR0TCyXTMB8w0EhRkXUAnSwtmtm29J4hSyAWtY}
-        notion_database_id: ${cfa914c2-9107-4f73-bc94-015cbe56961a}
+        notion_database_id: cfa914c2-9107-4f73-bc94-015cbe56961a
         img_store_type: local
         img_store_path_prefix: notionimg
         # img_store_url_path_prefix: ${secrets.IMG_STORE_URL_PATH_PREFIX }
