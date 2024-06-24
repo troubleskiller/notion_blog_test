@@ -17,7 +17,7 @@ jobs:
         token: ${{secrets.GITHUB_TOKEN}}
 
     - name: Markdown From Notion
-      uses: akkuman/notion_to_github_blog@master
+      uses: troubleskiller/notion_to_github@master
       with:
         notion_token: secret_K9rEXfR0TCyXTMB8w0EhRkXUAnSwtmtm29J4hSyAWtY
         notion_database_id: cfa914c291074f73bc94015cbe56961a
