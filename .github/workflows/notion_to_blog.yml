@@ -1,0 +1,40 @@
+name: Notion To Blog
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  notion-to-blog:
+    if: ${{ github.event.issue.user.login == github.actor && contains(github.event.issue.title, 'notion-ci') }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        # Workflows are only triggered when commits (and tags I think, but it would need to be tested) are created pushed using a Personal Access Token (PAT).
+        # ref: https://github.com/EndBug/add-and-commit/issues/311#issuecomment-948749635
+        token: ${{ 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 }}
+
+    - name: Markdown From Notion
+      uses: troubleskiller/notion_to_github_blog@master
+      with:
+        notion_token: ${{ secret_K9rEXfR0TCyXTMB8w0EhRkXUAnSwtmtm29J4hSyAWtY }}
+        notion_database_id: ${{ cfa914c291074f73bc94015cbe56961a }}
+        img_store_type: local
+        img_store_path_prefix: notionimg
+        # img_store_url_path_prefix: ${{ secrets.IMG_STORE_URL_PATH_PREFIX }}
+        # Actions run as an user, but when they are running in a fork there are potential security problems, so they are degraded to "read-only"
+        # ref: https://github.com/actions/first-interaction/issues/10#issuecomment-546628432
+        # ref: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token
+        # so you should set another token
+        img_store_github_token: ${{ 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 }}
+        # img_store_github_repo: akkuman/pic
+        img_store_github_branch: master
+        # md_store_path_prefix: ${{ secrets.MD_STORE_PATH_PREFIX }}
+
+    - name: push to github
+      uses: EndBug/add-and-commit@v7
+      with:
+        branch: hugo
+        message: 'Notion CI'
