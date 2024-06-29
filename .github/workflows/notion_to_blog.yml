@@ -21,18 +21,6 @@ jobs:
       with:
         notion_token: secret_K9rEXfR0TCyXTMB8w0EhRkXUAnSwtmtm29J4hSyAWtY
         notion_database_id: cfa914c2-9107-4f73-bc94-015cbe56961a
-        img_store_type: local
-        img_store_path_prefix: notionimg
-        # img_store_url_path_prefix: ${secrets.IMG_STORE_URL_PATH_PREFIX }
-        # Actions run as an user, but when they are running in a fork there are potential security problems, so they are degraded to "read-only"
-        # ref: https://github.com/actions/first-interaction/issues/10#issuecomment-546628432
-        # ref: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token
-        # so you should set another token
-        # img_store_github_token: ${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}
-        # img_store_github_repo: akkuman/pic
-        img_store_github_branch: master
-        # md_store_path_prefix: ${secrets.MD_STORE_PATH_PREFIX}
-
     - name: push to github
       uses: EndBug/add-and-commit@v7
       with:
